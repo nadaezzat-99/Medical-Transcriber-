@@ -28,13 +28,14 @@ def form_post(request: Request):
 
 
 @app.post('/form')
-def form_post(request: Request, num: int = Form(...), files: UploadFile = File(...)):
+def form_post(request: Request, num: int = Form(...), files: str = File(...)):
+#def form_post(request: Request, num: int = Form(...), files: UploadFile = File(...)):
     result1=files
-    result2=files.filename
+    result2=files
+    #result2=files.filename
     #result2=predict(files)
     result = spell_number(num)
     return templates.TemplateResponse('form.html', context={'request': request, 'result': result, 'num': num , 'result1': result1 , 'result2': result2})
-
 
 
 
