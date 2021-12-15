@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Report Generation</title>
+  <!-- Load Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Merriweather&display=swap" rel="stylesheet">  <!-- Load Styles -->
+  <link rel="stylesheet" href="static/css/styles.css">
+  </head>
+
+<body>
+    <main>
+      <header class="main__hero">
+        <h1>Report Generaton </h1>
+      </header>
+      <section id="section1" data-nav="Section 1" class="your-active-class">
+        <div class="landing__container">
+          <h2> Upload your Audio</h2>
+          <form method="post">
+          <input type="number" name="num" value="{{ num }}"/>
+          <input name="files" type="file" />
+          <input type="submit">
+          </form>
+          <audio id="audio" controls>
+            <source src="" id="src" />
+          </audio>
+          <p>Result: {{ result }}</p>
+          <p>Result: {{ result1 }}</p>
+          <p>Result: {{ result2 }}</p>
+        </div>
+      </section> 
+    </main>
+    <script src="js/app.js"></script>
+  </body>
+  </html>
