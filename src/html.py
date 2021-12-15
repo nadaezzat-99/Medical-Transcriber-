@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from src.model import spell_number , predict 
 
 app = FastAPI()
-#app.mount("templates/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory='templates/static'), name="static")
 templates = Jinja2Templates(directory='templates/')
 
 
