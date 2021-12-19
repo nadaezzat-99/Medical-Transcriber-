@@ -18,17 +18,17 @@
       <section id="section1" data-nav="Section 1" class="your-active-class">
         <div class="landing__container">
           <h2> Upload your Audio</h2>
-          <form method="post">
-          <input type="number" name="num" value="{{ num }}"/>
-          <input name="files" type="file" />
+          <form action="" method="post" enctype="multipart/form-data">
+          <input type="number" name="num" value="{{ num }}">
+          <input type="file" name="files">
           <input type="submit">
           </form>
           <audio id="audio" controls>
             <source src="" id="src" />
           </audio>
-          <p>Result: {{ result }}</p>
-          <p>Result: {{ result1 }}</p>
-          <p>Result: {{ result2 }}</p>
+          <p>Number: {{ result }}</p>
+          <p>File: {{ result1 }}</p>
+          <p>File Name: {{ result2 }}</p>
         </div>
       </section> 
     </main>

@@ -1,9 +1,9 @@
 
-from asrecognition import ASREngine
+# from asrecognition import ASREngine
 import soundfile as sf
 
 
-asr = ASREngine("en", model_path="facebook/wav2vec2-base-960h")
+# asr = ASREngine("en", model_path="facebook/wav2vec2-base-960h")
 
 def spell_number(num: int, multiply_by_2: bool = False):
     d = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
