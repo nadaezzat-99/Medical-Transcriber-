@@ -1,18 +1,9 @@
-/*
- *
- * CSS written based on SMACSS architecture.
- * To learn more, visit: http://smacss.com/
- * 
- * For simplicity, no reset or normalize is added. 
- * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
- *
-*/
 
 
 /* ---- Base Rules ---- */
 body {
     background: rgb(136,203,171);
-    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%,  rgb(96, 203, 245)  );
+    background: linear-gradient(0deg, rgb(52, 155, 105) 0%, rgb(241, 214, 214) 100%,  rgb(157, 209, 229)  );
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
@@ -42,8 +33,22 @@ h2 {
 
 p {
     line-height: 1.6em;
-    color: #eee;
+    color: rgb(238, 209, 209);
 }
+
+.button {
+    background-color: #e3f0e3;
+    height: 30px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
 /* ---- Layout Rules ---- */
 main {
@@ -66,21 +71,7 @@ input {
 
 /* ---- Module Rules ---- */
 
-/* Navigation Styles*/
-.navbar__menu ul {
-    padding-left: 0;
-    margin: 0;
-    text-align: right;
-    left: 0;
-}
 
-.navbar__menu li {
-    display: inline-flex;
-    font-size: 22px;
-    font-weight: bold;
-    margin: 15px 5px 5px 5px;
-    text-decoration: none;
-}
 
 .navbar__menu .menu__link {
     display: block;
@@ -90,26 +81,6 @@ input {
     color: #000;
 }
 
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
-    text-decoration: none;
-}
-
-#new_section {
-    background-color: rgb(0, 238, 255);
-    display: inline flex;
-    text-align: center;
-    text-decoration: none;
-    text-size-adjust: 20px;
-    height: 30px;
-    font-size: 22px;
-    margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-    
-  }
 /* Header Styles */
 .page__header {
     background: rgb(235, 228, 228);
