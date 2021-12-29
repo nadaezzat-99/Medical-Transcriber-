@@ -1,68 +1,39 @@
 
 # from asrecognition import ASREngine
+from asrecognition import ASREngine
+from fastapi import UploadFile
 import soundfile as sf
+from fpdf import FPDF
+import librosa
+import os
 
 
-# asr = ASREngine("en", model_path="facebook/wav2vec2-base-960h")
+asr = ASREngine("en", model_path="facebook/wav2vec2-base-960h")
 
-def spell_number(num: int, multiply_by_2: bool = False):
-    d = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
-         6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten',
-         11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen',
-         15: 'fifteen', 16: 'sixteen', 17: 'seventeen', 18: 'eighteen',
-         19: 'nineteen', 20: 'twenty',
-         30: 'thirty', 40: 'forty', 50: 'fifty', 60: 'sixty',
-         70: 'seventy', 80: 'eighty', 90: 'ninety'}
-    k = 1000
-    m = k * 1000
-    b = m * 1000
-    t = b * 1000
 
-    assert (0 <= num)
+# Trancribe the audio file , user uploaded 
+def predict(audio_file: UploadFile):
+      audio,sr=librosa.load(audio_file.file , sr =None)
+      sf.write('Audio_to_transcribe.wav', audio, sr)
+      audio_path=['Audio_to_transcribe.wav']
+      transcriptions = asr.transcribe(audio_path)
+      text=transcriptions[0]['transcription']
+      os.remove("Audio_to_transcribe.wav")
+      return(text)
+      
+def Generate_report(text:"str",destination):
+    # save FPDF() class into a variable pdf
+    pdf = FPDF()
+ 
+    # Add a page
+    pdf.add_page()
+ 
+   # set style and size of font
+   # that you want in the pdf
+    pdf.set_font("Arial", size = 16)
 
-    if multiply_by_2:
-        num *= 2
-
-    if num < 20:
-        return d[num]
-
-    if num < 100:
-        if num % 10 == 0:
-            return d[num]
-        else:
-            return d[num // 10 * 10] + '-' + d[num % 10]
-
-    if num < k:
-        if num % 100 == 0:
-            return d[num // 100] + ' hundred'
-        else:
-            return d[num // 100] + ' hundred and ' + spell_number(num % 100)
-
-    if num < m:
-        if num % k == 0:
-            return spell_number(num // k) + ' thousand'
-        else:
-            return spell_number(num // k) + ' thousand, ' + spell_number(num % k)
-
-    if num < b:
-        if (num % m) == 0:
-            return spell_number(num // m) + ' million'
-        else:
-            return spell_number(num // m) + ' million, ' + spell_number(num % m)
-
-    if num < t:
-        if (num % b) == 0:
-            return spell_number(num // b) + ' billion'
-        else:
-            return spell_number(num // b) + ' billion, ' + spell_number(num % b)
-
-    if num % t == 0:
-        return spell_number(num // t) + ' trillion'
-    else:
-        return spell_number(num // t) + ' trillion, ' + spell_number(num % t)
-
-def predict(audio_paths:'str'):
-       data_folder = "source_data/"
-       file_to_open = data_folder+audio_paths
-       transcriptions = asr.transcribe(file_to_open)
-       return(transcriptions)
+    # create a cell
+    pdf.cell(200, 10, txt = text, ln = 1, align = 'C')
+ 
+    # save the pdf with name .pdf
+    pdf.output("Report.pdf",dest=destination) 
