@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Request, Form, File, UploadFile 
-from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
 from starlette.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from src.model import spell_number , predict 
+from src.model import predict 
 
+ 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory='templates/static'), name="static")
 templates = Jinja2Templates(directory='templates/')
@@ -16,26 +16,16 @@ def save_to_text(content, filename):
         f.write(content)
     return filepath
 
-
 @app.get('/')
-def read_form():
-    return 'hello world'
-
-@app.get('/form')
 def form_post(request: Request):
-    result = 'Type a number'
-    return templates.TemplateResponse('form.html', context={'request': request, 'result': result})
+    return templates.TemplateResponse('form.html', context={'request': request})
 
 
-@app.post('/form')
-# def form_post(request: Request, num: int = Form(...), files: str = File(...)):
-def form_post(request: Request, num: int = Form(...), files: UploadFile = File(...)):
-    result = spell_number(num)
-    result1=files
-    # result2=files
-    result2=files.filename
-    #result2=predict(files)
-    return templates.TemplateResponse('form.html', context={'request': request, 'result': result, 'num': num , 'result1': result1, 'result2': result2})
+@app.post('/')
+def form_post(request: Request, files: UploadFile = File(...)):
+    transcription=predict(files)
+    Audio_fileName=files.filename
+    return templates.TemplateResponse('form.html', context={'request': request , 'file_name':Audio_fileName ,'Transcription':transcription})
 
 
 
