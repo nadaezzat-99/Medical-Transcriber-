@@ -1,4 +1,17 @@
 # Medical Audio Transcription  
+## Things you can do with this interface are :
+
+####  Uploading Audio Record             &#x2611;
+####  Get Transcription                  &#x2611;
+####  Generate transcription as PDF      &#x2611;
+
+## Tools used 
+### FASTAPI  >>> Server Side
+### HTML     >>> CLient Side
+
+
+## ASR Model 
+### wav2vec transformers
 
 
 # Code Run
