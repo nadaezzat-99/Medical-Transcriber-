@@ -3,7 +3,6 @@
 
 ####  Uploading Audio Record             &#x2611;
 ####  Get Transcription                  &#x2611;
-####  Generate transcription as PDF      &#x2611;
 
 ## Tools used 
 ### FASTAPI  >>> Server Side
