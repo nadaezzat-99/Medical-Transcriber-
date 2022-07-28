@@ -6,7 +6,7 @@
 
 ## Tools used 
 ### FASTAPI  >>> Server Side
-### HTML     >>> CLient Side
+### HTML & CSS    >>> CLient Side
 
 
 ## ASR Model 
